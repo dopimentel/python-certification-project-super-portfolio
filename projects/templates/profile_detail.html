@@ -8,4 +8,20 @@
     <h1>Perfil</h1>
     <p>{{ profile }}</p>
     <p>{{ profile.bio }}</p>
+    <p>{{ profile.github }}</p>
+    <p>{{ profile.linkedin }}</p>>
+    <h2>Projetos</h2>
+    <ul>
+        {% for project in profile.projects.all %}
+            <li>{{ project.name }}</li>
+            <li>{{ project.keyword }}</li>
+            <li>{{ project.key_skill }}</li>
+        {% endfor %}
+    </ul>
+    <h2>Certificados</h2>
+    <ul>
+        {% for certificate in profile.certificates.all %}
+            <li>{{ certificate.name }}</li>
+            <li>{{ certificate.certifying_institution }}</li>
+        {% endfor %}
 {% endblock %}
