@@ -1,15 +1,21 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}
     Perfil
 {% endblock %}
 
 {% block content %}
-    <h1>Perfil</h1>
-    <p>{{ profile }}</p>
-    <p>{{ profile.bio }}</p>
-    <p>{{ profile.github }}</p>
-    <p>{{ profile.linkedin }}</p>>
+    <div class="profile-infos profile-infos-container">
+        <h1>Perfil</h1>
+        <p>{{ profile }}</p>
+        <p>{{ profile.bio }}</p>
+        <a href="{{ profile.github }}" >
+            <img src="{% static 'img/github-icon-branco.png' %}" alt="GitHub" class="profile-infos-image">
+        </a>
+        <a href="{{ profile.linkedin }}" >
+            <img src="{% static 'img/linkedin-icon-circular.png' %}" alt="Linkedin" class="profile-infos-image">
+        </a>
+    </div>
     <h2>Projetos</h2>
     <ul>
         {% for project in profile.projects.all %}
