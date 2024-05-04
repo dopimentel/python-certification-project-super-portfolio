@@ -20,8 +20,16 @@ class CertificateSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class NestedCertificateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Certificate
+        fields = ["name", "timestamp"]  # maybe add profiles if doesn't work
+
+
 class CertifyingInstitutionSerializer(serializers.ModelSerializer):
-    certificates = CertificateSerializer(many=True, read_only=True)
+    certificates = NestedCertificateSerializer(
+        many=True
+    )  # maybe add profiles if doesn't work read_only=True
 
     class Meta:
         model = CertifyingInstitution
@@ -35,6 +43,6 @@ class CertifyingInstitutionSerializer(serializers.ModelSerializer):
         for certificate_data in certificates_data:
             Certificate.objects.create(
                 certifying_institution=certifying_institution,
-                **certificate_data
+                **certificate_data,
             )
         return certifying_institution

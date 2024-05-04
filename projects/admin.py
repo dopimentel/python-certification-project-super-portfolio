@@ -12,4 +12,5 @@ class CertifyingInstitutionAdmin(admin.ModelAdmin):
 
 admin.site.register(Profile)
 admin.site.register(Project)
+admin.site.register(Certificate)
 admin.site.register(CertifyingInstitution, CertifyingInstitutionAdmin)
