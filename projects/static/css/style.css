@@ -21,6 +21,27 @@ body {
     height: 100%;
 }
 
+/* header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 1000;
+}
+main {
+    margin-top: 100px;
+} */
+
+ul, ol {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+li {
+    margin-bottom: 0;
+}
+
 .profile-infos-container {
     align-items: center;
     background-color: #001A3B;
@@ -75,6 +96,13 @@ body {
     margin-top: 20px;
     transition: background-color 0.3s ease;
     width: fit-content;
+}
+
+.certificates-institution:hover {
+    background-color: #AAC4E4;
+    color: #001A3B;
+    cursor: pointer;
+    text-decoration: solid;
 }
 
 .projects-container {

@@ -5,29 +5,51 @@
 {% endblock %}
 
 {% block content %}
-    <div class="profile-infos profile-infos-container">
-        <h1>Perfil</h1>
-        <p>{{ profile }}</p>
-        <p>{{ profile.bio }}</p>
-        <a href="{{ profile.github }}" >
-            <img src="{% static 'img/github-icon-branco.png' %}" alt="GitHub" class="profile-infos-image">
-        </a>
-        <a href="{{ profile.linkedin }}" >
-            <img src="{% static 'img/linkedin-icon-circular.png' %}" alt="Linkedin" class="profile-infos-image">
-        </a>
-    </div>
-    <h2>Projetos</h2>
-    <ul>
-        {% for project in profile.projects.all %}
-            <li>{{ project.name }}</li>
-            <li>{{ project.keyword }}</li>
-            <li>{{ project.key_skill }}</li>
-        {% endfor %}
-    </ul>
-    <h2>Certificados</h2>
-    <ul>
-        {% for certificate in profile.certificates.all %}
-            <li>{{ certificate.name }}</li>
-            <li>{{ certificate.certifying_institution }}</li>
-        {% endfor %}
+    <header>
+        <nav>
+            <ul class="profile-infos-container">
+                <li>
+                    <a href="{% url 'profile-detail' pk=profile.pk %}" class="profile-infos"> {{ profile.name }} </a>
+                </li>
+                <li>
+                    <a href="{{ profile.github }}" target="_blank">
+                        <img src="{% static 'img/github-icon-branco.png' %}" alt="GitHub" class="profile-infos-image">
+                    </a>
+                    
+                </li>
+                <li>
+                    <a href="{{ profile.linkedin }}" target="_blank">
+                        <img src="{% static 'img/linkedin-icon-circular.png' %}" alt="Linkedin" class="profile-infos-image">
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main class="main-container">
+        <section class="bio-container">
+            <h2 class="section-title">About Me</h2>
+            <p>{{ profile.bio }}</p>
+        </section>
+    
+        <section class="projects-container">
+            {% for project in profile.projects.all %}
+                <ul class="project-card">
+                    <li class="project-title">{{ project.name }}</li>
+                    <li class="project-description">{{ project.description }}</li>
+                    <li class="project-keyword">{{ project.keyword }}</li>
+                    <li class="project-key-skill">{{ project.key_skill }}</li>
+                    <a href="{{ project.github_url }}" class="project-github-url" target="_blank">Repositório</a>
+                </ul>
+            {% endfor %}
+        </section>
+        <section class="certificates-container">
+            <h2 class="section-titles">Certificados</h2>
+            {% for certificate in profile.certificates.all %}
+                <a href="{{ certificate.certifying_institution.url }}" class="certificates-institution" target="_blank">
+                    <p>{{ certificate.name }}</p>
+                    <p>{{ certificate.certifying_institution }}</p>
+                </a>
+            {% endfor %}
+        </section>
+    </main>
 {% endblock %}
